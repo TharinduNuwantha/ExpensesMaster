@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/expences.dart';
+import 'package:myapp/wiedgets/expence_list.dart';
 
 class Expences extends StatelessWidget {
   Expences({super.key});
 
   final List<ExpencesModel> _expencesList = [
     ExpencesModel(
-      title: "FootBall",
+      title: "Football",
       mount: 12.5,
       data: DateTime.now(),
       category: Category.leasure,
@@ -18,7 +19,7 @@ class Expences extends StatelessWidget {
       category: Category.food,
     ),
     ExpencesModel(
-      title: "Bag",
+      title: "Laptop Bag",
       mount: 20,
       data: DateTime.now(),
       category: Category.travel,
@@ -29,31 +30,22 @@ class Expences extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expence Master"),
-        backgroundColor: const Color.fromARGB(248, 213, 188, 23),
+        centerTitle: false, // Modern look aligns title to left
+        title: const Text(
+          "Expense Tracker",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         actions: [
-          Container(
-            color: const Color.fromARGB(248, 26, 26, 26),
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.add,
-                color: Color.fromARGB(248, 213, 188, 23),
-              ),
-            ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add_circle_outline),
           ),
         ],
       ),
-
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return Text(_expencesList[index].title);
-              },
-            ),
-          ),
+          // You could add a Summary Chart widget here later!
+          ExpenceList(expenceList: _expencesList),
         ],
       ),
     );
